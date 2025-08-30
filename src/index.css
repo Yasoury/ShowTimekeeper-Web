@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(254, 72%, 8%);
+  --foreground: hsl(213, 31%, 91%);
+  --card: hsl(223, 22%, 16%);
+  --card-foreground: hsl(213, 31%, 91%);
+  --popover: hsl(223, 22%, 16%);
+  --popover-foreground: hsl(213, 31%, 91%);
+  --primary: hsl(180, 100%, 50%);
+  --primary-foreground: hsl(254, 72%, 8%);
+  --secondary: hsl(229, 21%, 21%);
+  --secondary-foreground: hsl(213, 31%, 91%);
+  --muted: hsl(223, 22%, 16%);
+  --muted-foreground: hsl(213, 19%, 59%);
+  --accent: hsl(320, 94%, 67%);
+  --accent-foreground: hsl(254, 72%, 8%);
+  --destructive: hsl(356, 91%, 54%);
+  --destructive-foreground: hsl(213, 31%, 91%);
+  --border: hsl(223, 22%, 26%);
+  --input: hsl(223, 22%, 16%);
+  --ring: hsl(180, 100%, 50%);
+  --chart-1: hsl(180, 100%, 50%);
+  --chart-2: hsl(320, 94%, 67%);
+  --chart-3: hsl(42, 93%, 56%);
+  --chart-4: hsl(147, 78%, 42%);
+  --chart-5: hsl(341, 75%, 51%);
+  --sidebar: hsl(223, 22%, 16%);
+  --sidebar-foreground: hsl(213, 31%, 91%);
+  --sidebar-primary: hsl(180, 100%, 50%);
+  --sidebar-primary-foreground: hsl(254, 72%, 8%);
+  --sidebar-accent: hsl(320, 94%, 67%);
+  --sidebar-accent-foreground: hsl(254, 72%, 8%);
+  --sidebar-border: hsl(223, 22%, 26%);
+  --sidebar-ring: hsl(180, 100%, 50%);
+  --font-sans: Cairo, sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: 'Courier New', monospace;
+  --radius: 0.75rem;
+}
+
+.light {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(210, 25%, 8%);
+  --card: hsl(180, 7%, 97%);
+  --card-foreground: hsl(210, 25%, 8%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(210, 25%, 8%);
+  --primary: hsl(180, 100%, 40%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(210, 25%, 8%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(240, 2%, 90%);
+  --muted-foreground: hsl(210, 25%, 8%);
+  --accent: hsl(320, 94%, 50%);
+  --accent-foreground: hsl(0, 0%, 100%);
+  --destructive: hsl(356, 91%, 54%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(201, 30%, 91%);
+  --input: hsl(200, 23%, 97%);
+  --ring: hsl(180, 100%, 40%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+
+  html[dir="rtl"] {
+    direction: rtl;
+  }
+
+  html[dir="ltr"] {
+    direction: ltr;
+  }
+}
+
+@layer components {
+  .gradient-bg {
+    background: linear-gradient(-45deg, 
+      hsl(254, 72%, 8%),
+      hsl(229, 21%, 21%),
+      hsl(223, 22%, 16%),
+      hsl(254, 72%, 8%));
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(180, 100%, 50%), hsl(320, 94%, 67%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-border {
+    position: relative;
+    background: hsl(223, 22%, 16%);
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    background: linear-gradient(135deg, hsl(180, 100%, 50%), hsl(320, 94%, 67%));
+    border-radius: inherit;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+  }
+
+  .download-btn {
+    background: hsl(180, 100%, 50%);
+    transition: all 0.3s ease;
+  }
+
+  .download-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 254, 255, 0.3);
+    background: hsl(180, 100%, 45%);
+  }
+
+  .feature-card {
+    background: hsl(223, 22%, 16%);
+    border: 1px solid hsl(223, 22%, 26%);
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 254, 255, 0.1);
+  }
+
+  .stats-bar {
+    height: 8px;
+    border-radius: 9999px;
+    overflow: hidden;
+    background: hsl(223, 22%, 16%);
+  }
+}
+
+@layer utilities {
+  @keyframes gradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  .animate-gradient {
+    animation: gradient 8s ease infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s ease-in-out infinite;
+  }
+}
